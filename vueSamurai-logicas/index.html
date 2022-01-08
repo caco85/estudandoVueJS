@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Intro the Vue</title>
+</head>
+<body>
+    <div id="app">
+        <p v-if="mostrar">oba,está me vendo? </p>
+        <p v-else>Eu estou vizivel?</p>
+        <p v-show="mostrar">Ainda estou aqui?</p>
+      
+        <button v-on:click="mostrar = !mostrar">Mostrar / Esconder</button>
+        <br><br>
+        <ul>
+            <li v-for="(pais,indice) in paises">
+                {{ pais.nome }} - GDP: {{ pais.gdp }}
+            </li>
+        </ul>
+    </div>
+
+
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                mostrar:true,
+                paises:[
+                    {nome: 'Venezuela', gdp: 1},
+                    {nome: 'Brasil', gdp: 20},
+                    {nome: 'Japão', gdp: 30},
+                    {nome: 'Estados Unidos', gdp: 40},
+                ]
+               
+            },
+            methods: {
+            
+            }
+        })
+
+    </script>
+</body>
+</html>

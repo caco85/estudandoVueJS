@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Jogo</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ titulo }}</h1>
+        <transition name="bounce">
+            <div v-if="bounce"> 
+                 <arcade-jogo></arcade-jogo>
+            </div>
+        </transition>
+        <button @click="bounce = !bounce">
+            Bounce
+        </button>
+       
+    </div>
+
+<div></div>
+
+   
+    <script>
+        Vue.component('arcade-jogo', {
+            data: function() {
+                return {
+                    jogos: [
+                        { nome: 'Street-Fighter 2' },
+                        { nome: 'Mortal Kombat 2' },
+                        { nome: 'Samurai Shadow 2' },
+                        { nome: 'Kof 95' },
+                    ],
+                };
+            },
+            template: `<div><div class="jogo" v-for="jogo in jogos"> 
+                <p>{{ jogo.nome }}
+                    </p></div></div>`,
+        });
+        
+     
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                   titulo: 'Meus jogos Favoritos',
+                   bounce: false,        
+            },
+            methods: {
+            
+            }
+        })
+
+    </script>
+
+    <style>
+        body{
+            font-family: sans-serif;
+            color: #666;
+        }
+        h1{
+            text-align: center;
+        }     
+        .jogo{
+            border: 1px solid rgba(0, 107, 189,0.71);
+            background-color: #F2f2F2;
+            padding: 15px;
+            margin-bottom: 10px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .bounce-enter-active{
+            animation: bounce-in .5s;
+        }
+        .bounce-leave-active{
+             animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+            0%{
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100%{
+                transform: scale(1);
+            }
+        }
+    </style>
+</body>
+</html>
